@@ -80,6 +80,23 @@ def init_admin():
         save_users(users)
         print("Admin user created: superuser1/123")
 
+<<<<<<< HEAD
+=======
+# Initialize admin user on app startup
+try:
+    init_admin()
+except Exception as e:
+    print(f"Error initializing admin: {e}")
+
+@app.route("/health")
+def health():
+    try:
+        redis_client.ping()
+        return {"status": "healthy"}, 200
+    except Exception as e:
+        return {"status": "unhealthy", "error": str(e)}, 500
+
+>>>>>>> a5094e9 (Initial commit)
 @app.route("/")
 def landing():
     return render_template("landing.html", hide_nav=True)
