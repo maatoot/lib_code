@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5001:5001"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - FLASK_SECRET_KEY=your-secret-key-change-in-production
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - library-network
+
+  redis:
+    image: redis:7.0-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - library-network
+    volumes:
+      - redis-data:/data
+
+networks:
+  library-network:
+    driver: bridge
+
+volumes:
+  redis-data:

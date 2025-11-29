@@ -1,0 +1,9 @@
+aws_region                = "eu-west-1"
+cluster_name              = "library-app-cluster"
+cluster_version           = "1.28"
+node_group_desired_size   = 2
+node_group_min_size       = 1
+node_group_max_size       = 4
+instance_types            = ["t3.small"]
+environment               = "production"
+app_name                  = "library-app"
